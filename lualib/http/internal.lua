@@ -1,5 +1,11 @@
 local table = table
 local type = type
+local string = string
+local tonumber = tonumber
+local pcall = pcall
+local assert = assert
+local error = error
+local pairs = pairs
 
 local M = {}
 
@@ -168,8 +174,8 @@ function M.request(interface, method, host, url, recvheader, header, content)
 	local write = interface.write
 	local header_content = ""
 	if header then
-		if not header.host then
-			header.host = host
+		if not header.Host then
+			header.Host = host
 		end
 		for k,v in pairs(header) do
 			header_content = string.format("%s%s:%s\r\n", header_content, k, v)
